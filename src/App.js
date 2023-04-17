@@ -18,8 +18,10 @@ export default function App() {
         <h1>Отчетность по счетам</h1>
         <FormTaskCreate
           formData={{
-            reportId: "vkl_17",
-            reportTitle: "Счета с отрицательным остатком",
+            reportId: "",
+            reportTitle: "",
+            // reportId: "vkl_29",
+            // reportTitle: "ВКЛ-29 Закрытые счета с ненулевым остатком",
             isPdk: false,
             scheduledTime: null,
             lifetimeLimit: 5,
