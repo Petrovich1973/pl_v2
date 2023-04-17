@@ -1,0 +1,7 @@
+.styleTaskListFilter {
+  display: flex;
+  flex-direction: column;
+}
+.styleTaskListFilter h2 {
+  display: flex;
+}

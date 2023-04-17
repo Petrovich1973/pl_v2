@@ -1,0 +1,33 @@
+.styleFormTaskCreate {
+  display: flex;
+  flex-direction: column;
+}
+.styleFormTaskCreate h2 {
+  display: flex;
+}
+.styleFormTaskCreateRow {
+  padding: 4px 0;
+  margin: 4px 0;
+}
+.styleFormTaskCreateFooter {
+  padding: 4px 0;
+  margin: 4px 0;
+  border-top: 1px solid #ccc;
+}
+.styleFormTaskCreateFooter button {
+  padding: 4px 8px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(157, 214, 179);
+}
+.styleFormTaskCreateFooter button:hover {
+  background-color: rgb(130, 214, 162);
+}
+.styleFormTaskCreateFooter button:active {
+  background-color: rgb(44, 82, 59);
+  color: rgb(212, 226, 217);
+}
+.styleFormTaskCreateFooter button:disabled {
+  background-color: rgb(203, 219, 209);
+  cursor: default;
+}

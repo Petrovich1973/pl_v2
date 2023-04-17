@@ -1,0 +1,7 @@
+.styleListTask {
+  display: flex;
+  flex-direction: column;
+}
+.styleListTask h2 {
+  display: flex;
+}

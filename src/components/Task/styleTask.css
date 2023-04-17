@@ -1,0 +1,11 @@
+.styleTask {
+  display: flex;
+  flex-direction: column;
+}
+.styleTask h2 {
+  display: flex;
+}
+.styleTaskFilters {
+}
+.styleTaskParameters {
+}
