@@ -1,25 +1,42 @@
+import {Autocomplete, TextField} from "@mui/material"
+
 export const ControlSelect = ({
+                                  id = "controlId",
+                                  multiple = false,
+                                  disabled = false,
                                   options = [],
                                   select = {label: "не выбрано", value: ""},
-                                  onChange = () => console.log("onChange")
+                                  onChange = () => console.log("onChange"),
+                                  label = ""
                               }) => {
 
     return (
-        <>
-            <select
-                value={select?.value}
-                onChange={(e) => {
-                    const result = options.find(op => (op.value === e.target.value)) || {label: "не выбрано", value: ""}
-                    return onChange(result)
-                }}
-            >
-                <option value={""}>не выбрано</option>
-                {options.map((option, i) => (
-                    <option key={i} value={option?.value}>
-                        {option?.label}
-                    </option>
-                ))}
-            </select>
-        </>
+        <Autocomplete
+            disablePortal
+            disabled={disabled}
+            multiple={multiple}
+            size="small"
+            id={id}
+            options={options}
+            value={select}
+            onChange={(event, value) => {
+                onChange(value)
+            }}
+            sx={{width: 500}}
+            disableCloseOnSelect={false}
+            isOptionEqualToValue={(option, value) => option.label === value.label}
+            getOptionLabel={option => `${option.label}`}
+            renderOption={(props, option, {selected}) => (
+                <li {...props}>{option.label}</li>
+            )}
+            renderInput={params => (
+                <TextField
+                    {...params}
+                    label={label}
+                    style={{backgroundColor: 'white'}}
+                    placeholder="Выбрать"
+                />
+            )}
+        />
     )
 }

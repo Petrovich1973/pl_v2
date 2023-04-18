@@ -5,3 +5,14 @@ body {
 .App {
   font-family: sans-serif;
 }
+.App h1 {
+  margin-top: 0;
+}
+.groupScreen {
+  display: flex;
+  gap: 24px;
+}
+.groupScreen > div {
+  width: 33%;
+  flex-shrink: 0;
+}

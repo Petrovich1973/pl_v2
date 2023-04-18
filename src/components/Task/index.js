@@ -10,7 +10,7 @@ export const Task = ({ taskData = {} }) => {
 
   return (
     <div className="styleTask">
-      <h2>Наименование задачи</h2>
+      <h2>Просмотр задачи</h2>
       <div className="styleTaskFilters">Task Filters</div>
       <div className="styleTaskParameters">Task Parameters</div>
     </div>

@@ -4,12 +4,11 @@ import {useActions} from "../../actions"
 import {ContextApp} from "../../reducerApp"
 import "./styleFormTaskCreate.css"
 import {FormField} from "./controls"
+import {Button} from "@mui/material"
 
 const initialState = {
     reportId: "",
     reportTitle: "",
-    // reportId: "vkl_29",
-    // reportTitle: "ВКЛ-29 Закрытые счета с ненулевым остатком",
     isPdk: false,
     scheduledTime: null,
     lifetimeLimit: 5,
@@ -23,12 +22,11 @@ export const FormTaskCreate = ({
     const {state} = React.useContext(ContextApp || null)
     const {getReportType, getReportScheme, getBranch, onReset} = useActions()
     const [form, setForm] = React.useState({...initialState})
-    // const [reportType, setReportType] = React.useState([])
-    // const [reportScheme, setReportScheme] = React.useState([])
     const [filters, setFilters] = React.useState([])
 
     // console.log(state)
     // console.log(filters)
+    console.log(form)
 
     React.useEffect(() => {
         setForm((form) => ({...form, ...formData}))
@@ -46,8 +44,11 @@ export const FormTaskCreate = ({
         const abortCtrl = new AbortController()
         const opts = {signal: abortCtrl.signal}
 
-        if (form?.reportId) void getReportScheme(form?.reportId, opts)
-        if (!form?.reportId) void onReset('getReportScheme')
+        if (form?.reportId)
+            void getReportScheme(form?.reportId, opts)
+
+        if (!form?.reportId)
+            void onReset('getReportScheme')
 
         return () => abortCtrl.abort()
     }, [form?.reportId])
@@ -56,11 +57,14 @@ export const FormTaskCreate = ({
         const abortCtrl = new AbortController()
         const opts = {signal: abortCtrl.signal}
 
-        if ('ID_MEGA' in form?.filters) void getBranch(form?.filters['ID_MEGA']?.values, opts)
-        if (!('ID_MEGA' in form?.filters)) void onReset('getBranch')
+        if ('ID_MEGA' in form?.filters)
+            void getBranch(form?.filters['ID_MEGA']?.values, opts)
+
+        if (!('ID_MEGA' in form?.filters))
+            void onReset('getBranch')
 
         return () => abortCtrl.abort()
-    }, [form?.filters])
+    }, [form?.filters?.ID_MEGA])
 
     React.useEffect(() => {
         const {reportSchemeResponse} = state.getReportScheme
@@ -79,11 +83,30 @@ export const FormTaskCreate = ({
     }
 
     const onChangeFormControlReportId = (select) => {
-        setForm((form) => ({...form, reportId: select.value, reportTitle: select.label}))
+
+        setForm((form) => ({
+            ...form,
+            filters: {},
+            reportId: select?.value || "",
+            reportTitle: select?.label || ""
+        }))
     }
 
     const onChangeFormField = (filter) => {
-        setForm((form) => ({...form, filters: {...form.filters, ...filter}}))
+
+        const copy = {...form.filters}
+
+        if (filter.attributeName === 'ID_MEGA')
+            delete copy['BRANCHNO']
+
+        if (filter.values)
+            setForm((form) => ({...form, filters: {...copy, [filter.attributeName]: {...filter}}}))
+
+        if (!filter.values) {
+            delete copy[filter.attributeName]
+            setForm((form) => ({...form, filters: {...copy}}))
+        }
+
     }
 
     return (
@@ -98,7 +121,8 @@ export const FormTaskCreate = ({
                         value: element.reportId
                     })).sort((a, b) => a.label - b.label)}
                     select={{label: form?.reportTitle, value: form?.reportId}}
-                    onChange={onChangeFormControlReportId}/> : <small>loading...</small>}
+                    onChange={onChangeFormControlReportId}
+                    label="Отчет"/> : <small>loading...</small>}
             </div>
 
             {filters.length &&
@@ -110,9 +134,14 @@ export const FormTaskCreate = ({
                 )) || state.getReportScheme.load && <small>loading...</small>}
 
             <div className="styleFormTaskCreateFooter">
-                <button disabled={false} onClick={onSendForm}>
+                <Button
+                    size="small"
+                    variant="contained"
+                    disabled={false}
+                    onClick={onSendForm}
+                >
                     Создать задачу
-                </button>
+                </Button>
             </div>
         </div>
     )

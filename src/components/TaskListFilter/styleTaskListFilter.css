@@ -4,4 +4,17 @@
 }
 .styleTaskListFilter h2 {
   display: flex;
+  margin: 0;
+}
+.styleTaskListFilter ul {
+  margin: 0;
+  padding: 0 0 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+.styleTaskListFilter ul li {
+  margin: 0 0 24px;
+}
+.styleTaskListFilter ul li h4 {
+  margin: 0;
 }

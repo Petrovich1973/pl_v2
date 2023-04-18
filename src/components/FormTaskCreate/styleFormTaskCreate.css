@@ -9,6 +9,9 @@
   padding: 4px 0;
   margin: 4px 0;
 }
+.styleFormTaskCreateRow * {
+  max-width: 100%;
+}
 .styleFormTaskCreateFooter {
   padding: 4px 0;
   margin: 4px 0;
