@@ -120,7 +120,7 @@ export const FormTaskCreate = ({
                         label: element.title,
                         value: element.reportId
                     })).sort((a, b) => a.label - b.label)}
-                    select={{label: form?.reportTitle, value: form?.reportId}}
+                    select={form?.reportId ? {label: form?.reportTitle, value: form?.reportId} : null}
                     onChange={onChangeFormControlReportId}
                     label="Отчет"/> : <small>loading...</small>}
             </div>

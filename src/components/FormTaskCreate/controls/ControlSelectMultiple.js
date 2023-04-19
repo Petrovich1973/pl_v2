@@ -6,7 +6,7 @@ export const ControlSelectMultiple = ({
                                           multiple = true,
                                           disabled = false,
                                           options = [],
-                                          select = {label: "не выбрано", value: ""},
+                                          select = [],
                                           onChange = () => console.log("onChange"),
                                           label = ""
                                       }) => {

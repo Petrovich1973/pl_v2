@@ -5,7 +5,7 @@ export const ControlSelect = ({
                                   multiple = false,
                                   disabled = false,
                                   options = [],
-                                  select = {label: "не выбрано", value: ""},
+                                  select = null,
                                   onChange = () => console.log("onChange"),
                                   label = ""
                               }) => {
@@ -24,7 +24,7 @@ export const ControlSelect = ({
             }}
             sx={{width: 500}}
             disableCloseOnSelect={false}
-            isOptionEqualToValue={(option, value) => option.label === value.label}
+            isOptionEqualToValue={(option, value) => option.value === value.value}
             getOptionLabel={option => `${option.label}`}
             renderOption={(props, option, {selected}) => (
                 <li {...props}>{option.label}</li>

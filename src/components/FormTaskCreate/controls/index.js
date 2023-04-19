@@ -22,16 +22,15 @@ export const FormField = ({
 
     if (attributeName === 'ID_MEGA') {
         const options = listOfPresetValues
-            .map(element => ({label: element?.visibleName, value: element?.value}))
+            .map(element => ({label: element?.visibleName, value: String(element?.value)}))
             .sort((a, b) => (a.value - b.value))
 
         const select = filters['ID_MEGA'] ? (
             {
                 label: options.find(el => String(el.value) === String(filters['ID_MEGA']?.values))?.label,
-                value: filters['ID_MEGA']?.values}
-        ) : (
-            {label: "не выбрано", value: ""}
-        )
+                value: String(filters['ID_MEGA']?.values)
+            }
+        ) : null
 
         return (
             <ControlSelect
@@ -47,11 +46,11 @@ export const FormField = ({
     if (attr?.attributeName === 'BRANCHNO') {
         const options = (state.getBranch.branchResponse || [])
             .filter(element => (element?.branchno && !element?.office))
-            .map(element => ({label: element?.title, value: element?.branchno}))
+            .map(element => ({label: element?.title, value: String(element?.branchno)}))
             .sort((a, b) => (a.value - b.value))
 
         const select = filters['BRANCHNO'] ? (
-            filters['BRANCHNO']?.values.split('Ѫ').map(element => ({label: element, value: element}))
+            filters['BRANCHNO']?.values.split('Ѫ').map(element => ({label: element, value: String(element)}))
         ) : (
             []
         )
