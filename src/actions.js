@@ -6,7 +6,6 @@ const useActions = () => {
   const { state, dispatch } = React.useContext(ContextApp || null);
 
   const getReportType = async (opts) => {
-    await console.log("getReportType init");
     await dispatch({
       type: UPDATE_GET_REPORT_TYPE,
       payload: {
@@ -38,7 +37,6 @@ const useActions = () => {
   };
 
   const getReportScheme = async (reportId, opts) => {
-    await console.log("getReportScheme init");
     await dispatch({
       type: UPDATE_GET_REPORT_SCHEME,
       payload: {
@@ -70,7 +68,6 @@ const useActions = () => {
   };
 
   const getBranch = async (idMega, opts) => {
-    await console.log("getBranch init");
     await dispatch({
       type: UPDATE_GET_BRANCH,
       payload: {

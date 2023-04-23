@@ -12,8 +12,11 @@
     "axios": "1.3.5",
     "csbbust": "1.0.1",
     "loader-utils": "3.2.1",
+    "moment": "^2.29.4",
     "react": "18.2.0",
+    "react-calendar": "^4.2.1",
     "react-dom": "18.2.0",
+    "react-input-mask": "^2.0.4",
     "react-scripts": "5.0.1"
   },
   "devDependencies": {

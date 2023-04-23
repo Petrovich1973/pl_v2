@@ -96,8 +96,22 @@ export const FormTaskCreate = ({
 
         const copy = {...form.filters}
 
-        if (filter.attributeName === 'ID_MEGA')
+        if (filter.attributeName === 'ID_MEGA') {
             delete copy['BRANCHNO']
+            delete copy['OFFICE']
+        }
+
+        if (filter.attributeName === 'BRANCHNO') {
+            if("OFFICE" in copy) {
+                const newOfficeValues = copy.OFFICE.values
+                    .split('Ѫ')
+                    .filter(el => (filter.values.split('Ѫ').includes(el.split('/')[0])))
+                    .join('Ѫ')
+                copy.OFFICE = {...copy.OFFICE, values: newOfficeValues}
+            }
+
+            if(!filter.values) delete copy['OFFICE']
+        }
 
         if (filter.values)
             setForm((form) => ({...form, filters: {...copy, [filter.attributeName]: {...filter}}}))
@@ -122,7 +136,7 @@ export const FormTaskCreate = ({
                     })).sort((a, b) => a.label - b.label)}
                     select={form?.reportId ? {label: form?.reportTitle, value: form?.reportId} : null}
                     onChange={onChangeFormControlReportId}
-                    label="Отчет"/> : <small>loading...</small>}
+                    label="Отчет"/> : <small>Загрузка доступных отчетов...</small>}
             </div>
 
             {filters.length &&
@@ -131,7 +145,7 @@ export const FormTaskCreate = ({
                     <div key={attr?.attributeName} className="styleFormTaskCreateRow">
                         <FormField attr={attr} filters={form?.filters || {}} onChange={onChangeFormField}/>
                     </div>
-                )) || state.getReportScheme.load && <small>loading...</small>}
+                )) || state.getReportScheme.load && <small>Загрузка фильтров...</small>}
 
             <div className="styleFormTaskCreateFooter">
                 <Button

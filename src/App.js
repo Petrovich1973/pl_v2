@@ -81,8 +81,8 @@ export default function App() {
                             formData={{
                                 // reportId: "",
                                 // reportTitle: "",
-                                reportId: "vkl_17",
-                                reportTitle: "ВКЛ-17 Счета с отрицательным остатком",
+                                reportId: "vkl_11",
+                                reportTitle: "ВКЛ-11 Реестр сторнированных операций в заданном суммовом диапазоне",
                                 isPdk: false,
                                 scheduledTime: null,
                                 lifetimeLimit: 5,
@@ -96,18 +96,26 @@ export default function App() {
                                         values: 13
                                     },
                                     BRANCHNO: {
-                                        attributeName: "BRANCHNO",
                                         attributeDescription: "ОСБ",
+                                        attributeName: "BRANCHNO",
                                         attributeType: "decimal(9,0)",
-                                        values: "8592Ѫ8593",
+                                        values: "8592Ѫ8593Ѫ8595",
                                         operation: "IN",
                                         filterOrder: 2
+                                    },
+                                    OFFICE: {
+                                        attributeDescription: "ВСП",
+                                        attributeName: "OFFICE",
+                                        attributeType: "decimal(9,0)",
+                                        values: "8593/87Ѫ8595/17",
+                                        operation: "=",
+                                        filterOrder: 3
                                     },
                                     OPTRANSDAY: {
                                         attributeDescription: "Дата последней операции",
                                         attributeName: "OPTRANSDAY",
                                         attributeType: "timestamp",
-                                        filterOrder: 4,
+                                        filterOrder: 8,
                                         operation: "BETWEEN",
                                         values: "1681812805010/1681812842858"
                                     }
