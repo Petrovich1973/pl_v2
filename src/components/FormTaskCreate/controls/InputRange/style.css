@@ -1,0 +1,29 @@
+*:focus {
+    outline: none;
+}
+
+.inputRange {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 3px;
+    color: #000;
+    background-color: rgb(240, 240, 240);
+}
+.inputRangeElement {
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    align-items: center;
+    height: 32px;
+    padding: 0 8px;
+    max-width: 50%;
+    overflow: hidden;
+    text-align: left;
+}
+.inputRangeElement:empty {
+    font-size: 24px;
+}

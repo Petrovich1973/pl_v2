@@ -126,7 +126,7 @@ export const FormTaskCreate = ({
     return (
         <div className="styleFormTaskCreate">
 
-            <h2>{title}</h2>
+            <h2>==={title}===</h2>
 
             <div className="styleFormTaskCreateRow">
                 {state.getReportType?.reportTypeResponse ? <ControlSelect
